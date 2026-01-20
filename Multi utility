@@ -1,0 +1,101 @@
+import random
+import string
+
+students = {}
+
+# ---------- Student Management ----------
+def student_management():
+    while True:
+        print("\n--- Student Management ---")
+        print("1. Add Student")
+        print("2. View Students")
+        print("3. Search Student")
+        print("4. Back")
+
+        ch = input("Enter choice: ")
+
+        if ch == "1":
+            sid = input("Enter Student ID: ")
+            name = input("Enter Name: ")
+            marks = input("Enter Marks: ")
+            students[sid] = {"Name": name, "Marks": marks}
+            print("Student Added Successfully")
+
+        elif ch == "2":
+            if not students:
+                print("No Students Found")
+            else:
+                for sid, details in students.items():
+                    print(sid, details)
+
+        elif ch == "3":
+            sid = input("Enter Student ID: ")
+            if sid in students:
+                print(students[sid])
+            else:
+                print("Student Not Found")
+
+        elif ch == "4":
+            break
+        else:
+            print("Invalid Choice")
+
+
+# ---------- Calculator ----------
+def calculator():
+    print("\n--- Calculator ---")
+    a = float(input("Enter first number: "))
+    b = float(input("Enter second number: "))
+
+    print("1.Add  2.Subtract  3.Multiply  4.Divide")
+    ch = input("Choose operation: ")
+
+    if ch == "1":
+        print("Result:", a + b)
+    elif ch == "2":
+        print("Result:", a - b)
+    elif ch == "3":
+        print("Result:", a * b)
+    elif ch == "4":
+        if b != 0:
+            print("Result:", a / b)
+        else:
+            print("Division by zero error")
+    else:
+        print("Invalid choice")
+
+
+# ---------- Password Generator ----------
+def password_generator():
+    print("\n--- Password Generator ---")
+    length = int(input("Enter password length: "))
+    chars = string.ascii_letters + string.digits + string.punctuation
+    password = ""
+
+    for i in range(length):
+        password += random.choice(chars)
+
+    print("Generated Password:", password)
+
+
+# ---------- Main Menu ----------
+while True:
+    print("\n====== MAIN MENU ======")
+    print("1. Student Management System")
+    print("2. Calculator")
+    print("3. Password Generator")
+    print("4. Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        student_management()
+    elif choice == "2":
+        calculator()
+    elif choice == "3":
+        password_generator()
+    elif choice == "4":
+        print("Thank You!")
+        break
+    else:
+        print("Invalid Choice")
